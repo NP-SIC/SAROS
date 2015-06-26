@@ -1,0 +1,75 @@
+
+    <div class="ws770 l">
+        <div class="ws650 m35tb r">
+            <div class="full l m5b">
+            </div>
+            <div class="full m20b l ">
+                <h1>Участники</h1>
+            </div>
+
+
+            <% nearest_event.each (function(event0) { %>
+            <div class="alert a ws570 l m10b p15 fwb" role="alert">
+                <a href="#action_view/<%= event0.get ('object_id') %>">
+                    <span class="p15l">Ближайшее заседание состоится <%= event0.get ('start') %></span>
+                </a>
+            </div>
+            <% }); %>
+
+
+            <div id="cont" class="ws540 l m10b">
+                <div class="full l m20tb">
+                    <strong class=" full m10b l ">Выберите секцию</strong>
+                    <div class="ws200 m10r l">
+                        <select class="ws200 pre m10r l" id="party_sectionchangeselect_id">
+
+                            <option <% if (selected == 0) { %> selected="selected" <% } %> value="0">&ndash; Все секции &ndash;</option>
+
+                            <% sections.each (function(section) { %>
+                                    <option
+                                    <% if (section.get('object_id') === selected) { %> selected="selected" <% } %>
+                                    value="<%= section.get('object_id') %>">
+                                    <%= section.get('name') %></option>
+                            <% }); %>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="full l m20b">
+                    <ul class="p0 lsn ws540">
+                        <% users.each (function(profile) { %>
+
+                        <div class="full l m20b">
+
+                                <div class="ws80 l">
+                                    <% if ( profile.get('picture_file') != null && profile.get('picture_file') != '') { %>
+
+                                    <img width="70px" height="70px" src="/index.php?c=files&a=get_public_file&id=<%= profile.get('picture_file') %>">
+                                    <% } else { %>
+                                    <img width="70px" height="70px" src="/new-ui/html/img/demo/avatar_sm.png">
+                                    <% } %>
+                                </div>
+                                <div class="ws400 l">
+
+                                    <a href="#profile_view/<%= profile.get('id') %>">
+                                    <h1>
+                                        <%= profile.get ('surname') %>  <%= profile.get ('first_name') %>
+                                        <br>
+
+                                    </h1>
+                                    </a>
+
+                                    <ul class="lsn p0 m20tb lh1_5 l">
+                                        <li> <%= profile.get ('job_title') %></li>
+                                    </ul>
+                                    <span class="region full l"></span>
+                                </div>
+
+                        </div>
+                        <% }); %>
+                    </ul>
+                </div>
+
+            </div></div>
+    </div>

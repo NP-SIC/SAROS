@@ -1,0 +1,208 @@
+<html><head>
+ <title>Совет малых предпринимателей</title>
+ <meta charset="utf-8">
+ <link rel="stylesheet" href="css/icss.css" type="text/css">
+ <link rel="stylesheet" href="css/base.css" type="text/css">
+      <script type="text/javascript" src="js/jquery.min.js"></script><style type="text/css"></style>
+  <script type="text/javascript" src="js/jquery.scrollTo-min.js"></script>
+  <script type="text/javascript" src="js/init.js"></script>
+ <script type="text/javascript" src="js/select.js"></script>
+ <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+ google.load("visualization", "1", {packages:["corechart"]});
+ google.setOnLoadCallback(drawChart);
+ function drawChart() {
+   var data = google.visualization.arrayToDataTable([
+     ['Year', 'Data 1', 'Data 2', 'Data 3'],
+     ['1',  1000, 400, 200],
+     ['2',  1170, 460, 200],
+     ['3',  660,  1120, 200],
+     ['4',  1030, 540, 200],
+     ['5',  1000, 400, 200],
+     ['6',  1170, 460, 200],
+     ['7',  660,  1120, 200],
+     ['8',  1030, 540, 200]
+   ]);
+
+   var options = {
+     title: '',
+     hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+     vAxis: {minValue: 0}
+   };
+
+   var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+   chart.draw(data, options);
+ }
+    </script>
+    </head>
+    <body class="ffa h100">
+ <div id="w" class="full   l">
+   <div id="hed" class="full l hs150">
+     <div class=" page ws1024 ma">
+  <div class="ws110 m35tb tar l">
+    <a href="#">
+      <img src="img/logo.png" width="80px" height="80px">
+    </a>
+  </div>
+  <div class="ws650 m35tb ttu p10l l">
+    <h1>
+      Система
+      <br>
+      автоматизации работы общественных советов
+    </h1>
+  </div>
+     </div>
+   </div>
+   <div id="cont" class="full l clearfix">
+     <div class=" page ws1024  ma">
+  <div class="fill l pre">
+
+    <div id="cont" class="ws770 l">
+      <div class="ws650 m35tb r">
+       <div class="full l m5b">
+       <a href="#">Главная страница</a> / <a href="#">Совет малых предпринимателей</a> /
+       </div> 
+       <div class="full m20b l ">
+       <h1>Участники</h1>
+       </div>
+       
+   
+
+
+<div  class="ws540 l m10b">
+
+<div class="full l m20tb">
+<strong class=" full m10b l ">Структура секций</strong>
+<div class="ws200 m10r l">
+
+   <select class="ws200 pre m10r l" name="hero[]">
+    <option selected="selected" >&ndash; Выберите секцию &ndash;</option>
+    <option value="Чебурашка">Чебурашка</option>
+    <option value="Крокодил Гена">Крокодил Гена</option>
+    <option value="Шапокляк">Шапокляк</option>
+    <option value="Крыса Лариса">Крыса Лариса</option>
+   </select>
+   </div>
+
+</div>
+<strong class=" full m20b l ">Секция активных молодых предпринимателей Самарской области</strong>
+<strong class=" full m10b l ">Заседаний проведено</strong>
+</div>
+</div>
+<div class="full l m20b">
+
+<div id="chart_div" class="full  l"></div>
+</div>
+
+     
+      
+    </div>
+    <div id="bar" class="ws254  pfx  h100 l ">
+      <div class="m66t l">
+   <div class="ws160 tac m30l">
+     <img src="img/demo/avatar_sm.png" width="100px" height="100px">
+     <h2>
+
+   Александр
+   
+<br>
+
+   Опарин
+      
+     </h2>
+   </div>
+      </div>
+      <div class="ws30 m25t l">
+   <div class="full l">
+     <a class="l m20tb " href="#gosearch">
+<img src="img/ico_search.png">
+     </a>
+   </div>
+   <div class="full l">
+     <a class="l m20tb " href="#">
+<img src="img/ico_exit.png">
+     </a>
+   </div>
+      </div>
+      <div class="full l m30t p20t">
+   <ul class="lsn m20l p0 lh1_5">
+     <li class="ttu ">
+<a href="#">Первый уровень</a>
+<ul class="lsn p0">
+  <li class="ttn ">
+    <a href="#">Второй уровень</a>
+  </li>
+  <li class="ttn ">
+    <a href="#">Второй уровень</a>
+  </li>
+  <li class="ttn ">
+    <a href="#">Второй уровень</a>
+  </li>
+</ul>
+     </li>
+     <li class="ttu ">
+<a href="#">Первый уровень</a>
+     </li>
+
+   </ul>
+      </div>
+    </div>
+  </div>
+     </div>
+   </div>
+ </div>
+ <div id="fot" class="full l hs150">
+   <div class=" page ws1024 ma">
+     <div class="ws904 r  ">
+  <div class="ws650 m30t l">
+    <div class="ws650 l">
+      <strong>© Система автоматизации работы общественных советов, 2015</strong>
+      <p class="m10t">
+   
+   Все материалы сайта доступны по лицензии: 
+   
+   <b>Creative Common Attribution 3.0</b>
+   <img class="m10lr r" src="img/logo_gpl.png" alt="GPL3">
+   <img class="m10lr r" src="img/logo_cc.png" alt="Creative Common Attribution 3.0">
+      </p>
+    </div>
+    <span class="ws550 l m10t ">При реализации проекта используются средства государственной поддержки, выделенные в качестве гранта в соответствии с распоряжением Президента Российской Федерации от 17.01.2014 №11-рп и на основании конкурса, проведенного Фондом ИСЭПИ</span>
+  </div>
+     </div>
+   </div>
+ </div>
+ <div id="gosearch" class="pre ws1024 ma">
+
+  <a href="#" class="cancel l pab m20tb "><img src="img/ico_search_a.png"></a> 
+
+  <input autofocus="" id="search" type="text" class="ws650  pab r0 m30t ttl l" value="">
+
+  <div id="rez" class="ws650 pab m30t l">
+  <b>В результате поиска найдено 5 совпадений</b>
+  <div class=" full l m30t">
+  <ol class="p0">
+  <li class="m20b l"><a href="#">Заголовок страницы</a>
+<div class=" full l tit"> дата обнавления страницы 17 ноября 2014 года 15.30</div>
+
+  </li>
+   <li class="m20b l"><a href="#">Заголовок страницы</a>
+<div class=" full l tit"> дата обнавления страницы 17 ноября 2014 года 15.30</div>
+   </li>
+   <li class="m20b l"><a href="#">Заголовок страницы</a>
+<div class=" full l tit"> дата обнавления страницы 17 ноября 2014 года 15.30</div>
+   </li>
+   <li class="m20b l"><a href="#">Заголовок страницы</a>
+<div class=" full l tit"> дата обнавления страницы 17 ноября 2014 года 15.30</div>
+   </li>
+   <li class="m20b l"><a href="#">Заголовок страницы</a>
+<div class=" full l tit"> дата обнавления страницы 17 ноября 2014 года 15.30</div>
+   </li>
+  </ol>
+  </div> 
+  </div>
+
+
+ </div> 
+ <div id="cover"></div>
+    
+  </body></html>

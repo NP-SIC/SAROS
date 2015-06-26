@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+        <title>Заголовок страницы с вопросом</title>
+
+        <!-- Modernizer -->
+        <script src="http://formstone.it/js/modernizr.js"></script>
+
+        <!-- Demo Resources -->
+
+        <script src="http://formstone.it/js/demo.js"></script>
+
+        <!--[if IE 8]>
+            <script>var IE8 = true;</script>
+            <script src="http://formstone.it/js/site.ie8.js"></script>
+            <link rel="stylesheet" href="http://formstone.it/css/demo.ie8.css">
+        <![endif]-->
+        <!--[if IE 9]>
+            <script>var IE9 = true;</script>
+            <script src="http://formstone.it/js/site.ie9.js"></script>
+        <![endif]-->
+<link rel="stylesheet" href="/new-ui/html/css/icss.css" type="text/css">
+<link rel="stylesheet" href="/new-ui/html/css/base.css" type="text/css">
+        <link href="/new-ui/html/js/jquery.fs.dropper.css" rel="stylesheet" type="text/css" media="all">
+        <script src="/new-ui/html/js/jquery.fs.dropper.js"></script>
+        <script type='text/javascript' src='/new-ui/html/js/select.js'></script>
+        <style>
+            .demo .filelists { margin: 20px 0; }
+            .demo .filelists h5 { margin: 10px 0 0; }
+
+            .demo .filelist { margin: 0; padding: 10px 0; }
+            .demo .filelist li { background: #fff; border-bottom: 1px solid #eee; font-size: 14px; list-style: none; padding: 5px; }
+            .demo .filelist li:before { display: none; }
+            .demo .filelist li .file { color: #333; }
+            .demo .filelist li .progress { color: #666; float: right; font-size: 10px; text-transform: uppercase; }
+            .demo .filelist li .delete { color: red; cursor: pointer; float: right; font-size: 10px; text-transform: uppercase; }
+            .demo .filelist li.complete .progress { color: green; }
+            .demo .filelist li.error .progress { color: red; }
+
+        </style>
+        <script>
+            var $filequeue,
+                $filelist;
+
+            $(document).ready(function() {
+                $filequeue = $(".demo .filelist.queue");
+                $filelist = $(".demo .filelist.complete");
+
+                $(".demo .dropped").dropper({
+                    action: "http://formstone.it/components/Dropper/demo/upload.php",
+                    maxSize: 1048576
+                }).on("start.dropper", onStart)
+                  .on("complete.dropper", onComplete)
+                  .on("fileStart.dropper", onFileStart)
+                  .on("fileProgress.dropper", onFileProgress)
+                  .on("fileComplete.dropper", onFileComplete)
+                  .on("fileError.dropper", onFileError);
+
+                $(window).one("pronto.load", function() {
+                    $(".demo .dropped").dropper("destroy").off(".dropper");
+                });
+            });
+
+            function onStart(e, files) {
+                console.log("Start");
+
+                var html = '';
+
+                for (var i = 0; i < files.length; i++) {
+                    html += '<li data-index="' + files[i].index + '"><span class="file">' + files[i].name + '</span><span class="progress">Queued</span></li>';
+                }
+
+                $filequeue.append(html);
+            }
+
+            function onComplete(e) {
+                console.log("Complete");
+                // All done!
+            }
+
+            function onFileStart(e, file) {
+                console.log("File Start");
+
+                $filequeue.find("li[data-index=" + file.index + "]")
+                          .find(".progress").text("0%");
+            }
+
+            function onFileProgress(e, file, percent) {
+                console.log("File Progress");
+
+                $filequeue.find("li[data-index=" + file.index + "]")
+                          .find(".progress").text(percent + "%");
+            }
+
+            function onFileComplete(e, file, response) {
+                console.log("File Complete");
+
+                if (response.trim() === "" || response.toLowerCase().indexOf("error") > -1) {
+                    $filequeue.find("li[data-index=" + file.index + "]").addClass("error")
+                              .find(".progress").text(response.trim());
+                } else {
+                    var $target = $filequeue.find("li[data-index=" + file.index + "]");
+
+                    $target.find(".file").text(file.name);
+                    $target.find(".progress").remove();
+                    $target.appendTo($filelist);
+                }
+            }
+
+            function onFileError(e, file, error) {
+                console.log("File Error");
+
+                $filequeue.find("li[data-index=" + file.index + "]").addClass("error")
+                          .find(".progress").text("Error: " + error);
+            }
+        </script>
+
+    </head>
+<body class="ffa h100 ">
+<div id="w" class="full   l">
+<div id="hed" class="full l hs150">
+<div class=" page ws1024 ma">
+<div class="ws110 m35tb tar l">
+<a href="admin_questions.html#">
+<img src="/new-ui/html/img/logo.png" width="80px" height="80px">
+</a>
+</div>
+<div class="ws650 m35tb ttu p10l l">
+<h1>
+Система
+<br>
+автоматизации работы общественных советов
+</h1>
+</div>
+</div>
+</div>
+<div id="cont" class="full l clearfix">
+<div class=" page ws1024  ma">
+<div id="goall" class="ws740 pab l m10 p15tb">
+<a href="admin_questions.html#" class="exit l  pab t ">x</a> 
+
+              
+<div class="full  tac l">
+  <button id="left">◄</button> <b class="ttu">1-й квартал</b> <button id="right">►</button>
+</div>
+             <div class="full l">
+  <button id="last" class="m50l p10tb">▲</button>  
+  </div>           
+<div id="pane-target" class="pane ws740 l hs450 vs">
+<div style=" width:1480px;">
+<ul class="elements l ws740 p0 lsn">
+<li class="section full l hs70 m20b">
+<div class="full m5b l"><div class="ws630 r"><h3><a href="admin_questions.html#">Заголовок с названием мероприятия</a></h3></div></div>
+<div class="ws70  tar l"><b>ПН, 17</b></div>
+<div class="ws210 m20l p20l l pic">Ул. Куйбышева, 100 в <a href="admin_questions.html#">15.00</a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Секция</a><br><a href="admin_questions.html#">Состав</a>
+</span>
+</div>
+<div class="ws210 m10l l">Председатель <a href="admin_questions.html#">А. Опарин </a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Повестка</a><br><a href="admin_questions.html#">Протокол</a></span></div>
+
+<div class="ws190 m10l l">Секретарь <a href="admin_questions.html#">А. Ишмуратов</a></div>
+</li>
+<li class="section full l hs70 m20b">
+<div class="full m5b l"><div class="ws630 r"><h3><a href="admin_questions.html#">Заголовок с названием мероприятия</a></h3></div></div>
+<div class="ws70  tar l"><b>ВТ, 20</b></div>
+<div class="ws210 m20l p20l l pic">Ул. Куйбышева, 100 в <a href="admin_questions.html#">15.00</a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Секция</a><br><a href="admin_questions.html#">Состав</a>
+</span>
+</div>
+<div class="ws210 m10l l">Председатель <a href="admin_questions.html#">А. Опарин </a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Повестка</a><br><a href="admin_questions.html#">Протокол</a></span></div>
+
+<div class="ws190 m10l l">Секретарь <a href="admin_questions.html#">А. Ишмуратов</a></div>
+</li>
+<li class="section full l hs70 m20b">
+<div class="full m5b l"><div class="ws630 r"><h3><a href="admin_questions.html#">Заголовок с названием мероприятия</a></h3></div></div>
+<div class="ws70  tar l"><b>СР, 18</b></div>
+<div class="ws210 m20l p20l l pic">Ул. Куйбышева, 100 в <a href="admin_questions.html#">15.00</a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Секция</a><br><a href="admin_questions.html#">Состав</a>
+</span>
+</div>
+<div class="ws210 m10l l">Председатель <a href="admin_questions.html#">А. Опарин </a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Повестка</a><br><a href="admin_questions.html#">Протокол</a></span></div>
+
+<div class="ws190 m10l l">Секретарь <a href="admin_questions.html#">А. Ишмуратов</a></div>
+</li>
+<li class="section full l hs70 m20b">
+<div class="full m5b l"><div class="ws630 r"><h3><a href="admin_questions.html#">Заголовок с названием мероприятия</a></h3></div></div>
+<div class="ws70  tar l"><b>ПН, 20</b></div>
+<div class="ws210 m20l p20l l pic">Ул. Куйбышева, 100 в <a href="admin_questions.html#">15.00</a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Секция</a><br><a href="admin_questions.html#">Состав</a>
+</span>
+</div>
+<div class="ws210 m10l l">Председатель <a href="admin_questions.html#">А. Опарин </a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Повестка</a><br><a href="admin_questions.html#">Протокол</a></span></div>
+
+<div class="ws190 m10l l">Секретарь <a href="admin_questions.html#">А. Ишмуратов</a></div>
+</li>
+<li class="section full l hs70 m20b">
+<div class="full m5b l"><div class="ws630 r"><h3><a href="admin_questions.html#">Заголовок с названием мероприятия</a></h3></div></div>
+<div class="ws70  tar l"><b>СР, 17</b></div>
+<div class="ws210 m20l p20l l pic">Ул. Куйбышева, 100 в <a href="admin_questions.html#">15.00</a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Секция</a><br><a href="admin_questions.html#">Состав</a>
+</span>
+</div>
+<div class="ws210 m10l l">Председатель <a href="admin_questions.html#">А. Опарин </a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Повестка</a><br><a href="admin_questions.html#">Протокол</a></span></div>
+
+<div class="ws190 m10l l">Секретарь <a href="admin_questions.html#">А. Ишмуратов</a></div>
+</li>
+<li class="section full l hs70 m20b">
+<div class="full m5b l"><div class="ws630 r"><h3><a href="admin_questions.html#">Заголовок с названием мероприятия</a></h3></div></div>
+<div class="ws70  tar l"><b>ПТ, 17</b></div>
+<div class="ws210 m20l p20l l pic">Ул. Куйбышева, 100 в <a href="admin_questions.html#">15.00</a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Секция</a><br><a href="admin_questions.html#">Состав</a>
+</span>
+</div>
+<div class="ws210 m10l l">Председатель <a href="admin_questions.html#">А. Опарин </a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Повестка</a><br><a href="admin_questions.html#">Протокол</a></span></div>
+
+<div class="ws190 m10l l">Секретарь <a href="admin_questions.html#">А. Ишмуратов</a></div>
+</li>
+<li class="section full l hs70 m20b">
+<div class="full m5b l"><div class="ws630 r"><h3><a href="admin_questions.html#">Заголовок с названием мероприятия</a></h3></div></div>
+<div class="ws70  tar l"><b>ПТ, 17</b></div>
+<div class="ws210 m20l p20l l pic">Ул. Куйбышева, 100 в <a href="admin_questions.html#">15.00</a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Секция</a><br><a href="admin_questions.html#">Состав</a>
+</span>
+</div>
+<div class="ws210 m10l l">Председатель <a href="admin_questions.html#">А. Опарин </a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Повестка</a><br><a href="admin_questions.html#">Протокол</a></span></div>
+
+<div class="ws190 m10l l">Секретарь <a href="admin_questions.html#">А. Ишмуратов</a></div>
+</li>
+<li class="section full l hs70 m20b">
+<div class="full m5b l"><div class="ws630 r"><h3><a href="admin_questions.html#">Заголовок с названием мероприятия</a></h3></div></div>
+<div class="ws70  tar l"><b>ПТ, 17</b></div>
+<div class="ws210 m20l p20l l pic">Ул. Куйбышева, 100 в <a href="admin_questions.html#">15.00</a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Секция</a><br><a href="admin_questions.html#">Состав</a>
+</span>
+</div>
+<div class="ws210 m10l l">Председатель <a href="admin_questions.html#">А. Опарин </a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Повестка</a><br><a href="admin_questions.html#">Протокол</a></span></div>
+
+<div class="ws190 m10l l">Секретарь <a href="admin_questions.html#">А. Ишмуратов</a></div>
+</li>
+<li class="section full l hs70 m20b">
+<div class="full m5b l"><div class="ws630 r"><h3><a href="admin_questions.html#">Заголовок с названием мероприятия</a></h3></div></div>
+<div class="ws70  tar l"><b>ПТ, 17</b></div>
+<div class="ws210 m20l p20l l pic">Ул. Куйбышева, 100 в <a href="admin_questions.html#">15.00</a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Секция</a><br><a href="admin_questions.html#">Состав</a>
+</span>
+</div>
+<div class="ws210 m10l l">Председатель <a href="admin_questions.html#">А. Опарин </a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Повестка</a><br><a href="admin_questions.html#">Протокол</a></span></div>
+
+<div class="ws190 m10l l">Секретарь <a href="admin_questions.html#">А. Ишмуратов</a></div>
+</li>
+<li class="section full l hs70 m20b">
+<div class="full m5b l"><div class="ws630 r"><h3><a href="admin_questions.html#">Заголовок с названием мероприятия</a></h3></div></div>
+<div class="ws70  tar l"><b>ПТ, 17</b></div>
+<div class="ws210 m20l p20l l pic">Ул. Куйбышева, 100 в <a href="admin_questions.html#">15.00</a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Секция</a><br><a href="admin_questions.html#">Состав</a>
+</span>
+</div>
+<div class="ws210 m10l l">Председатель <a href="admin_questions.html#">А. Опарин </a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Повестка</a><br><a href="admin_questions.html#">Протокол</a></span></div>
+
+<div class="ws190 m10l l">Секретарь <a href="admin_questions.html#">А. Ишмуратов</a></div>
+</li>
+<li class="section full l hs70 m20b">
+<div class="full m5b l"><div class="ws630 r"><h3><a href="admin_questions.html#">Заголовок с названием мероприятия</a></h3></div></div>
+<div class="ws70  tar l"><b>ПТ, 17</b></div>
+<div class="ws210 m20l p20l l pic">Ул. Куйбышева, 100 в <a href="admin_questions.html#">15.00</a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Секция</a><br><a href="admin_questions.html#">Состав</a>
+</span>
+</div>
+<div class="ws210 m10l l">Председатель <a href="admin_questions.html#">А. Опарин </a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Повестка</a><br><a href="admin_questions.html#">Протокол</a></span></div>
+
+<div class="ws190 m10l l">Секретарь <a href="admin_questions.html#">А. Ишмуратов</a></div>
+</li>
+</ul>
+<ul class="elements l ws740 p0 lsn">
+<li class="section full l hs70 m20b">
+<div class="full m5b l"><div class="ws630 r"><h3><a href="admin_questions.html#">Заголовок с названием мероприятия</a></h3></div></div>
+<div class="ws70  tar l"><b>ВТ, 19</b></div>
+<div class="ws210 m20l p20l l pic">Ул. Куйбышева, 100 в <a href="admin_questions.html#">15.00</a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Секция</a><br><a href="admin_questions.html#">Состав</a>
+</span>
+</div>
+<div class="ws210 m10l l">Председатель <a href="admin_questions.html#">А. Опарин </a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Повестка</a><br><a href="admin_questions.html#">Протокол</a></span></div>
+
+<div class="ws190 m10l l">Секретарь <a href="admin_questions.html#">А. Ишмуратов</a></div>
+</li>
+<li class="section full l hs70 m20b">
+<div class="full m5b l"><div class="ws630 r"><h3><a href="admin_questions.html#">Заголовок с названием мероприятия</a></h3></div></div>
+<div class="ws70  tar l"><b>ВТ, 19</b></div>
+<div class="ws210 m20l p20l l pic">Ул. Куйбышева, 100 в <a href="admin_questions.html#">15.00</a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Секция</a><br><a href="admin_questions.html#">Состав</a>
+</span>
+</div>
+<div class="ws210 m10l l">Председатель <a href="admin_questions.html#">А. Опарин </a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Повестка</a><br><a href="admin_questions.html#">Протокол</a></span></div>
+
+<div class="ws190 m10l l">Секретарь <a href="admin_questions.html#">А. Ишмуратов</a></div>
+</li>
+<li class="section full l hs70 m20b">
+<div class="full m5b l"><div class="ws630 r"><h3><a href="admin_questions.html#">Заголовок с названием мероприятия</a></h3></div></div>
+<div class="ws70  tar l"><b>ВТ, 19</b></div>
+<div class="ws210 m20l p20l l pic">Ул. Куйбышева, 100 в <a href="admin_questions.html#">15.00</a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Секция</a><br><a href="admin_questions.html#">Состав</a>
+</span>
+</div>
+<div class="ws210 m10l l">Председатель <a href="admin_questions.html#">А. Опарин </a>
+<span class="full m5tb l linc">
+<a href="admin_questions.html#">Повестка</a><br><a href="admin_questions.html#">Протокол</a></span></div>
+
+<div class="ws190 m10l l">Секретарь <a href="admin_questions.html#">А. Ишмуратов</a></div>
+</li>
+</ul>
+</div>
+                </div>
+                 <div class="full l">
+                 <button id="next" class="m50l p10tb">▼</button>  
+           
+            </div>
+
+                 </div>
+<div class="ws770 l">
+<div class="ws650 m35tb r">
+ <div class="full l m5b">
+ <a href="admin_questions.html#">Главная страница</a> / <a href="admin_questions.html#">Совет малых предпринимателей</a> /
+ </div> 
+ <div class="full m20b l ">
+                 <div class="l"><h1>Заголовок страницы с вопросом</h1>
+                 </div>
+                 <div class="m20l l">
+<button class="hed add fwb p5 l">+</button>
+<button class="hed close fwb p5 l"><img src="/new-ui/html/img/pen_p.png"></button>
+<button class="hed close fwb p5 l">×</button>
+    
+</div></div>
+<div class="alert a ws570 l m10b p15 fwb" role="alert">
+  <span class="p15l">Ближайшее заседание состоится в четверг 20 ноября</span> 
+</div>
+
+<div id="cont" class="ws540 l m10b">
+<a class="r" href="admin_questions.html#goall">Посмотреть секции совета</a>
+
+<div class="full m10t fs14 l">
+<div class="ws210 m10tb l p10r fs10 tit">Заседание<br><a class="fs15" href="admin_questions.html#">Название заседания</a></div>
+<div class="ws210 m10tb l p10r  tit"><span class="full fs10 l">Файлы</span><span class="ws100 m10r l"><a href="admin_questions.html#">скачать</a></span><span class="ws100 lh1 l">Предложено</span></div>
+</div>
+<div class="full m10b l">
+<p>OpenWorm — попытка построить полную симуляцию червя, состоящего из 302 нервных клеток и 95 мышечных. Проект стартовал в начале 2011 года и в настоящее время продолжает свое существование с помощью сотрудничества ученых и программистов из США, России и Европы. Все усилия рассматриваются как первый шаг на пути к имитации больших биологических систем. Для построения модели взят червь C. elegans.</p>
+</div>
+<div class="full m10tb l">
+<div class="ws210 m10r l"><span class="tit full m10b l">Голосование</span>
+<button class="ws90 tas l m10r yes fwb ttu">За</button><button class="ws90 tac l  no fwb ttu">Против</button>
+
+</div>
+<div class="ws210  l"><span class="tit m10b full l">Результаты голосования</span>
+<b class="g">ЗА</b> – 10 голосов</br>
+<b class="red">ПРОТИВ</b> – 2 голоса
+</div>
+<div class=" l">
+<button class="ws100 l m30t action fwb ttu">Принять</button>
+</div>
+</div>
+<div class="full l m20tb">
+    <b class="tit m20r l">Реплики в обсуждении вопроса</b><b><a class="l m20l" href="admin_questions.html#">Добавить свою реплику</a></b>
+</div>
+<div class="full m10b l ">
+<div class="ws50 l ">
+<img src="/new-ui/html/img/demo/ico_av.png"/>
+</div>
+<div class="ws450 m10l l">
+<div class="full tit fs10 l"><span class="ws100 m5r l"><a href="admin_questions.html#">Александр Опарин</a></span>17 ноября 2014 года, 15.00</div>
+<span class="full l"><p>Это текст комментария к вопросу в обсуждении</p></span>
+<span class="full fs14 l"><a class="l" href="admin_questions.html#">Ответить</a><div class="m20l l">
+<button class="hed add fwb p5 l">+</button>
+<button class="hed close fwb p5 l"><img src="/new-ui/html/img/pen_p.png"></button>
+<button class="hed close fwb p5 l">×</button>
+    
+</div></span>
+</div>
+</div>
+<div class="full m20b">
+<div class="full m10b l ">
+<div class="ws50 l ">
+<img src="/new-ui/html/img/demo/ico_av.png"/>
+</div>
+<div class="ws450 m10l l">
+<div class="full tit fs10 l"><span class="ws100 m5r l"><a href="admin_questions.html#">Александр Опарин</a></span>17 ноября 2014 года, 15.00</div>
+<span class="full l"><p>Это текст комментария к вопросу в обсуждении</p></span>
+<span class="full fs14 l"><a class="l" href="admin_questions.html#">Ответить</a><div class="m20l l">
+<button class="hed add fwb p5 l">+</button>
+<button class="hed close fwb p5 l"><img src="/new-ui/html/img/pen_p.png"></button>
+<button class="hed close fwb p5 l">×</button>
+    
+</div></span>
+</div>
+</div>
+<div class="full m10b l ">
+<div class="ws50 l ">
+<img src="/new-ui/html/img/demo/ico_av.png"/>
+</div>
+<div class="ws450 m10l l">
+<div class="full tit fs10 l"><span class="ws100 m5r l"><a href="admin_questions.html#">Александр Опарин</a></span>17 ноября 2014 года, 15.00</div>
+<span class="full l"><p>Это текст комментария к вопросу в обсуждении</p></span>
+<span class="full fs14 l"><a class="l" href="admin_questions.html#">Ответить</a><div class="m20l l">
+<button class="hed add fwb p5 l">+</button>
+<button class="hed close fwb p5 l"><img src="/new-ui/html/img/pen_p.png"></button>
+<button class="hed close fwb p5 l">×</button>
+    
+</div></span>
+</div>
+</div>
+<div class="full m10b l ">
+<div class="ws50 l ">
+<img src="/new-ui/html/img/demo/ico_av.png"/>
+</div>
+<div class="ws450 m10l l">
+<div class="full tit fs10 l"><span class="ws100 m5r l"><a href="admin_questions.html#">Александр Опарин</a></span>17 ноября 2014 года, 15.00</div>
+<span class="full l"><p>Это текст комментария к вопросу в обсуждении</p></span>
+<span class="full fs14 l"><a class="l" href="admin_questions.html#">Ответить</a><div class="m20l l">
+<button class="hed add fwb p5 l">+</button>
+<button class="hed close fwb p5 l"><img src="/new-ui/html/img/pen_p.png"></button>
+<button class="hed close fwb p5 l">×</button>
+    
+</div></span>
+</div>
+</div>
+<div class="full m10b l ">
+<div class="ws50 l ">
+<img src="/new-ui/html/img/demo/ico_av.png"/>
+</div>
+<div class="ws450 m10l l">
+<div class="full tit fs10 l"><span class="ws100 m5r l"><a href="admin_questions.html#">Александр Опарин</a></span>17 ноября 2014 года, 15.00</div>
+<span class="full l"><p>Это текст комментария к вопросу в обсуждении</p></span>
+<span class="full fs14 l"><a class="l" href="admin_questions.html#">Ответить</a><div class="m20l l">
+<button class="hed add fwb p5 l">+</button>
+<button class="hed close fwb p5 l"><img src="/new-ui/html/img/pen_p.png"></button>
+<button class="hed close fwb p5 l">×</button>
+    
+</div></span>
+</div>
+</div>
+</div>
+<div class=" full m20t  l "><strong class="l">Добавление реплики</strong>
+</div>
+<div class="full l m20t">
+<label class="full tit l m5b">Заголовок реплики</label>
+<input type="text" class="ws500  m20b l" value="Как долго продлиться, лето, которое понравилось">
+</div>
+<div class="full l">
+<label class="full tit l m5b">Текст реплики</label>
+
+<textarea class="ws500  ffa lh1_5  m20b l" cols="40" rows="10">OpenWorm — попытка построить полную симуляцию червя, состоящего из 302 нервных клеток и 95 мышечных. Проект стартовал в начале 2011 года и в настоящее время продолжает свое существование с помощью сотрудничества ученых и программистов из США, России и Европы. Все усилия рассматриваются как первый шаг на пути к имитации больших биологических систем. Для построения модели взят червь C. elegans.</textarea>
+</div>
+
+<div class="full l">
+ <span class="ws200 m10b tit l ">Загрузка файлов</span>
+ </div>
+<div class="demo full m20b l">
+
+<form action="admin_questions.html#" class="demo_form">
+                    <div class="dropped"></div>
+
+                    <div class="filelists">
+                       
+                        <ol class="filelist complete">
+                        </ol>
+                       
+                        <ol class="filelist queue">
+                        </ol>
+                    </div>
+                </form>
+
+    
+</div>
+<button class="ws150 l m10r action fwb ttu">Добавить</button>
+</div></div>
+<div id="bar" class="ws254  pfx  h100 l ">
+<div class="m66t l">
+<div class="ws160 tac m30l">
+<img src="/new-ui/html/img/demo/avatar_sm.png" width="100px" height="100px">
+<h2>
+
+Александр
+
+<br>
+
+Опарин
+
+</h2>
+</div>
+</div>
+<div class="ws30 m25t l">
+<div class="full l">
+<a class="l m20tb " href="admin_questions.html#gosearch">
+<img src="/new-ui/html/img/ico_search.png">
+</a>
+</div>
+<div class="full l">
+<a class="l m20tb " href="admin_questions.html#">
+<img src="/new-ui/html/img/ico_exit.png">
+</a>
+</div>
+</div>
+<div class="full l m30t p20t">
+<ul class="lsn m20l p0 lh1_5">
+<li class="ttu ">
+<a href="admin_questions.html#">Первый уровень</a>
+<ul class="lsn p0">
+<li class="ttn ">
+<a href="admin_questions.html#">Второй уровень</a>
+</li>
+<li class="ttn ">
+<a href="admin_questions.html#">Второй уровень</a>
+</li>
+<li class="ttn ">
+<a href="admin_questions.html#">Второй уровень</a>
+</li>
+</ul>
+</li>
+<li class="ttu ">
+<a href="admin_questions.html#">Первый уровень</a>
+</li>
+
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="fot" class="full l hs150">
+<div class=" page ws1024 ma">
+<div class="ws904 r  ">
+<div class="ws650 m30t l">
+<div class="ws650 l">
+<strong>© Система автоматизации работы общественных советов, 2015</strong>
+<p class="m10t">
+
+Все материалы сайта доступны по лицензии: 
+
+<b>Creative Common Attribution 3.0</b>
+<img class="m10lr r" src="/new-ui/html/img/logo_gpl.png" alt="GPL3">
+<img class="m10lr r" src="/new-ui/html/img/logo_cc.png" alt="Creative Common Attribution 3.0">
+</p>
+</div>
+<span class="ws550 l m10t ">При реализации проекта используются средства государственной поддержки, выделенные в качестве гранта в соответствии с распоряжением Президента Российской Федерации от 17.01.2014 №11-рп и на основании конкурса, проведенного Фондом ИСЭПИ</span>
+</div>
+</div>
+</div>
+</div>
+<div id="gosearch" class="pre ws1024 ma">
+
+ <a href="admin_questions.html#" class="cancel l pab m20tb "><img src="/new-ui/html/img/ico_search_a.png"></a>
+
+ <input autofocus id="search" type="text" class="ws650  pab r0 m30t ttl l" value="" />
+
+ <div id="rez" class="ws650 pab m30t l">
+ <b>В результате поиска найдено 5 совпадений</b>
+ <div class=" full l m30t">
+ <ol class="p0">
+ <li class="m20b l"><a href="admin_questions.html#">Заголовок страницы</a>
+<div class=" full l tit"> дата обнавления страницы 17 ноября 2014 года 15.30</div>
+
+ </li>
+<li  class="m20b l"><a href="admin_questions.html#">Заголовок страницы</a>
+<div class=" full l tit"> дата обнавления страницы 17 ноября 2014 года 15.30</div>
+</li>
+<li  class="m20b l"><a href="admin_questions.html#">Заголовок страницы</a>
+<div class=" full l tit"> дата обнавления страницы 17 ноября 2014 года 15.30</div>
+</li>
+<li  class="m20b l"><a href="admin_questions.html#">Заголовок страницы</a>
+<div class=" full l tit"> дата обнавления страницы 17 ноября 2014 года 15.30</div>
+</li>
+<li  class="m20b l"><a href="admin_questions.html#">Заголовок страницы</a>
+<div class=" full l tit"> дата обнавления страницы 17 ноября 2014 года 15.30</div>
+</li>
+ </ol>
+ </div> 
+ </div>
+
+
+</div> 
+<div id="cover"></div>
+</body>
+</html>

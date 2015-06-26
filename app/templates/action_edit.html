@@ -1,0 +1,165 @@
+<div class="ws770 l">
+    <div class="ws650 m35tb r">
+        <div class="full l m5b">
+        </div>
+        <div class="full m20t l ">
+            <h1>Добавление мероприятия</h1>
+        </div>
+
+        <div id="cont" class="ws540 l m10b">
+
+            <div class="full l m20t">
+                <label class="full tit l m5b">Секция</label>
+
+                <select  class="ws500  m20b l" id="action_sectionchangeselect_id">
+
+                    <% sections.each (function(section) { %>
+                    <option
+                    <% if (section.get('object_id') === 0) { %> selected="selected" <% } %>
+                    value="<%= section.get('object_id') %>">
+                    <%= section.get('name') %></option>
+                    <% }); %>
+                </select>
+            </div>
+
+
+            <div class="full l m20t">
+                <label class="full tit l m5b">Председатель</label>
+
+                <select  class="ws500  m20b l" id="action_chairmanchangeselect_id">
+
+                    <% userslist.each (function(user) { %>
+                            <option
+                            <% if (user.get('object_id') == action.get('chairman_id')) { %> selected="selected" <% } %>
+                            value="<%= user.get('object_id') %>">
+                            <%= user.get('first_name') %> <%= user.get('surname') %></option>
+                    <% }); %>
+                </select>
+            </div>
+
+            <div class="full l m20t">
+                <label class="full tit l m5b">Секретарь</label>
+
+                <select  class="ws500  m20b l" id="action_secretarychangeselect_id">
+
+                    <% userslist.each (function(user) { %>
+                    <option
+                    <% if (user.get('object_id') == action.get('secretary_id')) { %> selected="selected" <% } %>
+                    value="<%= user.get('object_id') %>">
+                    <%= user.get('first_name') %> <%= user.get('surname') %></option>
+                    <% }); %>
+                </select>
+            </div>
+
+            <div class="full l m20t">
+                <label class="full tit l m5b">Заголовок мероприятия</label>
+                <input class="ws500  m20b l" id="action_edit_name_id" value="<%= action.get ('name') %>" type="text">
+            </div>
+            <div class="full l m20t">
+                <label class="full tit l m5b">Адрес</label>
+                <input class="ws500  m20b l" id="action_edit_address_id" value="<%= action.get ('address') %>" type="text">
+            </div>
+
+            <div class="full l m20t">
+                <label class="full tit l m5b">Дата проведения</label>
+            </div>
+
+            <div class="full l m20t">
+                <label class="full tit l m5b">День</label>
+                <input type="number" class="ws500  m20b l" id="action_day_id" min="1" max="31" value="<%= start_datetime.getDate() %>">
+            </div>
+
+            <div class="full l m20t">
+                <label class="full tit l m5b">Месяц</label>
+
+                <select class="ws500  m20b l"  id="action_month_id">
+
+                    <% monthlist.each (function(month) { %>
+                            <option
+                            <% if (month.get('id') == (start_datetime.getMonth() + 1)) { %> selected="selected" <% } %>
+                            value="<%= month.get('id') %>">
+                            <%= month.get('name') %></option>
+                    <% }); %>
+                </select>
+            </div>
+
+            <div class="full l m20t">
+                <label class="full tit l m5b">Год</label>
+                <input type="number" class="ws500  m20b l" id="action_year_id" min="2013" max="2099" value="<%= start_datetime.getFullYear() %>">
+            </div>
+
+            <div class="full l m20t">
+                <label class="full tit l m5b">Время проведения</label>
+            </div>
+
+            <div class="full l m20t">
+                <label class="full tit l m5b"  >Часов</label> <input type="number" id="action_hour_id" class="ws500  m20b l" min="0" max="23" value="<%= start_datetime.getHours() %>">
+            </div>
+
+            <div class="full l m20t">
+                <label class="full tit l m5b" >Минут</label> <input type="number"  id="action_minute_id" class="ws500  m20b l" min="0" max="59" value="<%= start_datetime.getMinutes() %>">
+            </div>
+
+<!-- ------------------------------------------------------------------------------- -->
+      <% if (selected > 0) { %>
+
+            <div class="full l m20t">
+
+                <label class="full tit l m5b">Участники</label>
+
+                <% users.each (function(user) { %>
+
+                <li class="full m10b fs14 l"><div class="ws300 l"><a href="#profile_view/<%= user.get('object_id') %>"><%= user.get('name') %></a></div><div class="removethisitemclass" data-userid="<%= user.get('object_id') %>"><p>удалить</p></div></li>
+                <% }); %>
+            </div>
+
+
+
+            <div class="full l m20t">
+                <label class="full tit l m5b">Добавить участника</label>
+
+                <select class="ws200 pre m10r l" id="action_user_add_select_id">
+
+                    <option value="0">&ndash; Выберите пользователя &ndash;</option>
+
+                    <% userslist.each (function(useritem) { %>
+                        <option value="<%= useritem.get('object_id') %>"> <%= useritem.get('name') %></option>
+                    <% }); %>
+                </select>
+
+                <button class="ws150 l m10r action fwb ttu" id="action_edit_add_user_link_id">Добавить</button>
+            </div>
+
+            <div class="full l m20t">
+
+                <label class="full tit l m5b">Вопросы</label>
+
+                <% questions.each (function(question) { %>
+
+                <li class="full m10b fs14 l"><div class="ws300 l"><a href="#question_view/<%= question.get('object_id') %>"><%= question.get('name') %></a></div><div class="removethisitemclass" data-userid="<%= question.get('object_id') %>"><p>удалить</p></div></li>
+                <% }); %>
+            </div>
+
+            <div class="full l m20t">
+                <label class="full tit l m5b">Добавить вопрос</label>
+
+                <select class="ws200 pre m10r l" id="action_question_add_select_id">
+
+                    <option value="0">&ndash; Выберите вопрос &ndash;</option>
+
+                    <% questionslist.each (function(questionitem) { %>
+                    <option value="<%= questionitem.get('object_id') %>"> <%= questionitem.get('name') %></option>
+                    <% }); %>
+                </select>
+
+                <button class="ws150 l m10r action fwb ttu" id="action_edit_add_question_link_id">Добавить</button>
+            </div>
+
+    <% } %>
+
+
+            <button class="ws150 l m10r action fwb ttu" id="action_edit_add_action_id">Сохранить</button>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="ws770 l">
+    <div class="ws600 m35tb r">
+        <div class="full l m5b">
+        </div>
+        <div class="full m20b l ">
+            <h1>Мероприятия</h1>
+        </div>
+
+        <% nearest_event.each (function(event0) { %>
+        <div class="alert a ws570 l m10b p15 fwb" role="alert">
+            <a href="#action_view/<%= event0.get ('object_id') %>">
+                <span class="p15l">Ближайшее заседание состоится <%= event0.get ('start') %></span>
+            </a>
+        </div>
+        <% }); %>
+
+
+        <div id="cont" class="ws540 l m10b">
+
+            <div class="full l m20tb">
+                <strong class=" full m10b l ">Выберите секцию</strong>
+                <div class="ws200 m10r l">
+
+                    <select class="ws200 pre m10r l selectpicker" id="actions_sectionchangeselect_id">
+
+                        <option <% if (selected == 0) { %> selected="selected" <% } %> value="0">&ndash; Все секции &ndash;</option>
+
+                        <% sections.each (function(section) { %>
+                        <option
+                        <% if (section.get('object_id') === selected) { %> selected="selected" <% } %>
+                        value="<%= section.get('object_id') %>">
+                        <%= section.get('name') %></option>
+                        <% }); %>
+                    </select>
+                </div>
+            </div>
+
+            <div class="full  tac l">
+                <button id="action_left">◄</button> <b class="ttu"> <%= event_quartals[page_counter].pe_quart %>-й квартал <%= event_quartals[page_counter].pe_year %> года</b> <button id="action_right">►</button>
+            </div>
+
+
+            <div class="full l ">
+                <!--<strong class=" full m10b l ">Мероприятия</strong>-->
+                <ol class="p0 ws540">
+                <div class="actioncontainer">
+
+                    <% project_events.each (function(action) { %>
+
+                        <div class="section full l hs70 m20b">
+                            <h3>
+                                    <a href="#action_view/<%= action.get ('object_id') %>"><%= action.get ('name') %></a>
+                            </h3>
+                            <div class="ws100  tar l" style="margin-left: -100px;">
+                                    <b><%= action.get ('start_date') %></b>
+                            </div>
+
+                            <div class="ws260 m20l p20l l pic">
+                                    <%= action.get ('address') %> в <a href="#actions"><%= action.get ('start_time') %></a>
+                                    <br>
+                                    <% if (action.get('chairman_id')) { %>
+                                                Председатель
+                                                <a href="#profile_view/<%= action.get('chairman_id')%>"><%= action.get('chairman')%></a>
+                                    <% } %>
+                                    <br>
+                                    <% if (action.get('secretary_id')) { %>
+                                                Секретарь <a href="#profile_view/<%= action.get('secretary_id') %>">
+                                                        <%= action.get('secretary') %>
+                                                </a>
+                                    <% } %>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+                    <h3><a href="#action_edit/0">Добавить мероприятие</a></h3>
+                </ol>
+            </div>
+
+
+        </div></div>
+
+
+
+</div>

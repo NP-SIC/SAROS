@@ -1,0 +1,42 @@
+<div class="ws770 l">
+    <div class="ws650 m35tb r">
+        <div class="full l m5b">
+        </div>
+        <div class="full m20b l ">
+            <div class="l"><h1><%= caption %></h1>
+            </div>
+            <div class="m20l l">
+
+            </div></div>
+
+        <% nearest_question.each (function(question0) { %>
+        <div class="alert a ws570 l m10b p15 fwb" role="alert">
+            <a href="#question_view/<%= question0.get ('object_id') %>">
+                <span class="p15l">Ближайшее заседание состоится <%= question0.get ('start_date') %></span>
+            </a>
+        </div>
+        <% }); %>
+
+
+        <div id="cont" class="ws540 l m10b">
+
+            <div class="full m10b l">
+                <p><%= text %></p>
+            </div>
+
+
+            <div class="full l">
+                <label class="full tit l m5b">Заслушали</label>
+
+                <textarea class="ws500  ffa lh1_5  m20b l" cols="40" rows="10" id="question_heared_text"><%= heared %></textarea>
+            </div>
+
+            <div class="full l">
+                <label class="full tit l m5b">Решили</label>
+
+                <textarea class="ws500  ffa lh1_5  m20b l" cols="40" rows="10" id="question_decision_text"><%= decision %></textarea>
+            </div>
+
+            <button class="ws150 l m10r action fwb ttu" id="decision_question_id">Принять решение</button>
+        </div></div>
+</div>

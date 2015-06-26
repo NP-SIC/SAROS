@@ -1,0 +1,54 @@
+
+<div class="ws650 m35tb r">
+    <div class="title fwb full m20b l">
+
+        <a class="  l p5b m10r" href="#profile_view/<%= profile.get('object_id')  %>">Профиль участника</a>
+        <span class="l p5b m10r">Редактировать</span>
+
+    </div>
+    <div class="ws200 l">
+        <% if ( profile.get('picture_file') != null && profile.get('picture_file') != '') { %>
+
+        <img src="/index.php?c=files&a=get_public_file&id=<%= profile.get('picture_file') %>">
+        <% } else { %>
+        <img src="/new-ui/html/img/demo/avatar_sm.png">
+        <% } %>
+    </div>
+    <div class="ws430 r">
+
+        <label class="full tit l m5b">Имя</label>
+        <input class="ws250  m20b l" id="profile_edit_first_name" value="<%= profile.get ('first_name') %>" type="text">
+        <label class="full tit l m5b">Фамилия</label>
+        <input class="ws250  m20b l" id="profile_edit_surname" value="<%= profile.get ('surname') %>" type="text">
+        <label class="full tit l m5b">Должность</label>
+        <input class="ws250  m20b l" id="profile_edit_job_title" value="<%= profile.get ('job_title') %>" type="text">
+
+    </div>
+    <div class="full m20t l">
+
+        <label class="full tit l m5b">Email</label>
+        <div class="ws500 m20b l">
+        <input class="full tit l m5b" id="profile_edit_email" value="<%= email %>" type="text">
+        </div>
+
+        <label class="full tit l m5b">Телефон</label>
+        <div class="ws500 m20b l">
+        <input class="full tit l m5b" id="profile_edit_phone" value="<%= phone %>" type="text">
+        </div>
+
+        <label class="full tit l m5b">Общая информация</label>
+
+        <div class="ws500 m20b l">
+            <p><textarea class="full ffa lh1_5  m20b l" id="profile_edit_comments" cols="50" rows="10"><%= profile.get ('comments') %></textarea></p>
+        </div>
+
+        <div class="full l">
+            <div class="full m15t l">
+                <button class="ws150 l m10r action fwb ttu" id="save_profile_button_id">Сохранить</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+              

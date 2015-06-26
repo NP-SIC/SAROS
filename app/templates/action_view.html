@@ -1,0 +1,57 @@
+<div class="ws650 m35tb r">
+    <div class="full l m5b">
+    </div>
+    <div class="full m20b l ">
+        <h1><%= action.get ('name') %></h1>
+    </div>
+
+    <div id="cont" class="ws540 l m10b">
+
+        <div class="actioncontainer">
+
+            <div class="ws100 tar l"><b><%= action.get ('start_date') %></b></div>
+            <div class="ws210 m20l p20l l pic"> <%= action.get ('address') %> в <a href="#actions"><%= action.get ('start_time') %></a>
+                        <span class="full m5tb l linc"> </span>
+            </div><br>
+            <% if (action.get ('chairman_id')) { %>
+            <div class="ws210 m10l l">Председатель <a href="#profile_view/<%= action.get ('chairman_id') %> "><%= action.get ('chairman') %> </a>
+                                <span class="full m5tb l linc"> </span></div>
+            <% } %>
+            <% if (action.get ('secretary_id')) { %>
+            <div class="ws190 m10l l">Секретарь <a href="#profile_view/<%= action.get ('secretary_id') %> "><%= action.get ('secretary') %> </a></div>
+            <% } %>
+            <br><br>
+        </div>
+
+        <br><br>
+        <a href="/index.php?c=plan&a=report&id=<%= action.get ('object_id') %>" target="_blank">Печатная версия документа</a>
+        <br><br>
+        <h3><a href="#action_edit/<%= action.get ('object_id') %>">Редактировать</a></h3>
+
+        <h3><a href id="action_remove_action">Удалить</a></h3>
+
+        <br><br>
+
+        <div class="full l ">
+            <strong class=" full m10b l ">Вопросы</strong>
+            <ol class="p0 ws540">
+
+                <% questions.each (function(question) { %>
+                <div class="full m10b fs14  l">
+                    <h3>
+                        <a href="#question_view/<%= question.get('object_id') %>"><%= question.get('name') %></a>
+                    </h3>
+                    <div class="ws210 m10tb l p10r  tit">
+                        <span class="full fs10 l">Инициатор</span>
+                        <span class="ws100 m10r l">
+                            <a href="#profile_view/<%= question.get('createdById') %>"><%= question.get('createdBy')%></a>
+                        </span>
+                    </div>
+                </div>
+                <% }); %>
+
+            </ol>
+        </div>
+
+    </div>
+</div>

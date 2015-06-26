@@ -1,0 +1,62 @@
+<div class="ws770 l">
+    <div class="ws650 m35tb r">
+
+        <div id="cont" class="ws540 l m10b">
+
+            <div class="full l m20tb">
+                <strong class=" full m10b l ">Поиск</strong>
+                <div class="ws200 m10r l">
+
+                    <input class="ws500  m20b l" id="search_input_value_id_value1" value="" type="text">
+
+
+                    <button class="ws150 l m10r action fwb ttu" id="search_text_value_button_id">Поиск</button>
+
+                </div>
+            </div>
+            
+            <div class="full l m20b">
+                <strong class=" full m10b l ">Результаты поиска</strong>
+                <ul class="p0 lsn ws540">
+
+                    <% searchItems.each (function(searchItem) { %>
+                    <li class="full m10b fs14 l">
+
+                        <% if (searchItem.get ('type') == "company") { %> совет  <% } %>
+                        <% if (searchItem.get ('type') == "workspace") { %> секция совета <% } %>
+                        <% if (searchItem.get ('type') == "task") { %> задача  <% } %>
+                        <% if (searchItem.get ('type') == "message") { %> документ   <% } %>
+                        <% if (searchItem.get ('type') == "contact") { %> контакт <% } %>
+                        <% if (searchItem.get ('type') == "event") { %> событие <% } %>
+
+
+                        <% if (searchItem.get ('type') == "company" && 0) { %>
+                        <a href="#<%= searchItem.get ('object_id') %>"> <%= searchItem.get ('name') %> </a>
+                        <% } %>
+                        <% if (searchItem.get ('type') == "workspace" && 0) { %>
+                        <a href="#<%= searchItem.get ('object_id') %>"> <%= searchItem.get ('name') %> </a>
+                        <% } %>
+                        <% if (searchItem.get ('type') == "task") { %>
+                        <a href="#question_view/<%= searchItem.get ('object_id') %>"> <%= searchItem.get ('name') %> </a>
+                        <% } %>
+                        <% if (searchItem.get ('type') == "message") { %>
+                        <a href="#discussion_view/<%= searchItem.get ('object_id')%>"> <%= searchItem.get ('name') %> </a>
+                        <% } %>
+                        <% if (searchItem.get ('type') == "contact") { %>
+                        <a href="#profile_view/<%= searchItem.get ('object_id')%>"> <%= searchItem.get ('name') %> </a>
+                        <% } %>
+
+                        <% if (searchItem.get ('type') == "event") { %>
+                        <a href="#action_view/<%= searchItem.get ('object_id')%>"> <%= searchItem.get ('name') %> </a>
+                        <% } %>
+
+
+
+                    </li>
+                    <% }); %>
+
+                </ul>
+            </div>
+
+        </div></div>
+</div>

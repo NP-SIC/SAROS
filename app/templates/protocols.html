@@ -1,0 +1,55 @@
+<div class="ws650 m35tb r">
+    <div class="full l m5b">
+    </div>
+    <div class="full m20b l ">
+        <h1>Протоколы</h1>
+    </div>
+
+
+    <% nearest_event.each (function(event0) { %>
+    <div class="alert a ws570 l m10b p15 fwb" role="alert">
+        <a href="#action_view/<%= event0.get ('object_id') %>">
+            <span class="p15l">Ближайшее заседание состоится <%= event0.get ('start') %></span>
+        </a>
+    </div>
+    <% }); %>
+
+
+    <div id="cont" class="ws540 l m10b">
+        <!--<a class="r" href="#goall">Посмотреть секции совета</a>-->
+
+        <div class="full l m20tb">
+            <strong class=" full m10b l ">Выберите секцию</strong>
+            <div class="ws200 m10r l">
+
+                <select class="ws200 pre m10r l" id="protocol_sectionchangeselect_id">
+
+                    <option <% if (selected == 0) { %> selected="selected" <% } %> value="0">&ndash; Все секции &ndash;</option>
+
+                    <% sections.each (function(section) { %>
+                    <option
+                    <% if (section.get('object_id') === selected) { %> selected="selected" <% } %>
+                    value="<%= section.get('object_id') %>">
+                    <%= section.get('name') %></option>
+                    <% }); %>
+                </select>
+
+            </div>
+        </div>
+
+
+        <div class="full l ">
+            <!--<strong class=" full m10b l ">Протоколы</strong>-->
+            <ol class="p0 ws540">
+
+                <% protocols.each (function(protocol) { %>
+                <li class="full m10b fs14  l"><h3><a href="#protocol_view/<%= protocol.get('object_id') %>"><%= protocol.get('name') %></a></h3>
+                    <div class="ws210 m10tb l p10r fs10 tit"></div>
+                    <div class="ws210 m10tb l p10r  tit"></div><div class="ws100 m10tb l tit"></div>
+                </li>
+                <% }); %>
+
+            </ol>
+        </div>
+
+    </div></div>

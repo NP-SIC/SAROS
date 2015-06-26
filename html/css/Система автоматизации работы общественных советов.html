@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html style="" class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title> Система автоматизации работы общественных советов </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="stylesheet" href="%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D1%85%20%D1%81%D0%BE%D0%B2%D0%B5%D1%82%D0%BE%D0%B2_files/d41d8cd9.css">
+        <script src="%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D1%85%20%D1%81%D0%BE%D0%B2%D0%B5%D1%82%D0%BE%D0%B2_files/d7100892.js"></script>
+
+        <link rel="stylesheet" href="%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D1%85%20%D1%81%D0%BE%D0%B2%D0%B5%D1%82%D0%BE%D0%B2_files/icss.css" type="text/css">
+        <link rel="stylesheet" href="%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D1%85%20%D1%81%D0%BE%D0%B2%D0%B5%D1%82%D0%BE%D0%B2_files/base.css" type="text/css">
+        <link rel="stylesheet" href="%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D1%85%20%D1%81%D0%BE%D0%B2%D0%B5%D1%82%D0%BE%D0%B2_files/jquery-ui.css" type="text/css">
+    <script src="%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D1%85%20%D1%81%D0%BE%D0%B2%D0%B5%D1%82%D0%BE%D0%B2_files/4f35fe6a.js" data-requiremodule="4f35fe6a.main" data-requirecontext="_" async="" charset="utf-8" type="text/javascript"></script></head>
+<body class="ffa h100">
+
+<div id="w" class="full l">
+    <div id="hed" class="full l hs150">
+        <div class="page ws1024 ma">
+            <div class="ws110 m35tb tar l">
+                <a href="#">
+                    <img src="%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D1%85%20%D1%81%D0%BE%D0%B2%D0%B5%D1%82%D0%BE%D0%B2_files/logo.png" height="80px" width="80px">
+                </a>
+            </div>
+            <div class="ws650 m35tb ttu p10l l">
+                <h1>
+                    Система
+                    <br>
+                    автоматизации работы общественных советов
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div id="cont" class="full l clearfix">
+        <div class="page ws1024 ma">
+            <div class="fill l pre">
+                <div class="ws770 l">
+
+                    <div id="app_container"><div class="ws650 m35tb r">
+    <div class="full l m5b">
+        <a href="#">Главная страница</a> / <a href="#">Совет малых предпринимателей</a> /
+    </div>
+    <div class="full m20b l ">
+        <h1></h1>
+    </div>
+
+    <div id="cont" class="ws540 l m10b">
+
+        <div class="actioncontainer">
+
+            <div class="ws100 tar l"><b></b></div>
+            <div class="ws210 m20l p20l l pic">  в <a href="#actions"></a>
+                        <span class="full m5tb l linc"> </span>
+            </div><br>
+            
+            
+            <br><br>
+        </div>
+
+        <br><br>
+        <a href="http://plan.local/index.php?c=plan&amp;a=report&amp;id=" target="_blank">Печатная версия документа</a>
+        <br><br>
+        <h3><a href="#action_edit/">Редактировать</a></h3>
+        <br><br>
+
+        <div class="full l ">
+            <strong class=" full m10b l ">Вопросы</strong>
+            <ol class="p0 ws540">
+
+                
+
+            </ol>
+        </div>
+
+
+        <div class="full l ">
+            <strong class=" full m10b l ">Обсуждения</strong>
+            <ol class="p0 ws540">
+
+                
+                <li class="full m10b fs14  l"><h3><a href="#discussion_view/11">sdf</a></h3>
+                    <div class="ws210 m10tb l p10r  tit"><span class="full fs10 l">Инициатор</span><span class="ws100 m10r l"><a href="#">Ишмуратов А.</a></span><span class="ws100 lh1 l">Голосование<br>недоступно</span></div><div class="ws100 m10tb l tit"><span class="full fs10 l">Статус</span><span>принят</span></div>
+                </li>
+                
+                <li class="full m10b fs14  l"><h3><a href="#discussion_view/15">Обсуждение ФЗ 44</a></h3>
+                    <div class="ws210 m10tb l p10r  tit"><span class="full fs10 l">Инициатор</span><span class="ws100 m10r l"><a href="#">Ишмуратов А.</a></span><span class="ws100 lh1 l">Голосование<br>недоступно</span></div><div class="ws100 m10tb l tit"><span class="full fs10 l">Статус</span><span>принят</span></div>
+                </li>
+                
+                <li class="full m10b fs14  l"><h3><a href="#discussion_view/20">Кто отвечает за вывоз мусора?1</a></h3>
+                    <div class="ws210 m10tb l p10r  tit"><span class="full fs10 l">Инициатор</span><span class="ws100 m10r l"><a href="#">Ишмуратов А.</a></span><span class="ws100 lh1 l">Голосование<br>недоступно</span></div><div class="ws100 m10tb l tit"><span class="full fs10 l">Статус</span><span>принят</span></div>
+                </li>
+                
+                <li class="full m10b fs14  l"><h3><a href="#discussion_view/24">Юбилей министерства</a></h3>
+                    <div class="ws210 m10tb l p10r  tit"><span class="full fs10 l">Инициатор</span><span class="ws100 m10r l"><a href="#">Ишмуратов А.</a></span><span class="ws100 lh1 l">Голосование<br>недоступно</span></div><div class="ws100 m10tb l tit"><span class="full fs10 l">Статус</span><span>принят</span></div>
+                </li>
+                
+                <li class="full m10b fs14  l"><h3><a href="#discussion_view/28">Windows или Linux</a></h3>
+                    <div class="ws210 m10tb l p10r  tit"><span class="full fs10 l">Инициатор</span><span class="ws100 m10r l"><a href="#">Ишмуратов А.</a></span><span class="ws100 lh1 l">Голосование<br>недоступно</span></div><div class="ws100 m10tb l tit"><span class="full fs10 l">Статус</span><span>принят</span></div>
+                </li>
+                
+                <li class="full m10b fs14  l"><h3><a href="#discussion_view/45">Трудно быть богом</a></h3>
+                    <div class="ws210 m10tb l p10r  tit"><span class="full fs10 l">Инициатор</span><span class="ws100 m10r l"><a href="#">Ишмуратов А.</a></span><span class="ws100 lh1 l">Голосование<br>недоступно</span></div><div class="ws100 m10tb l tit"><span class="full fs10 l">Статус</span><span>принят</span></div>
+                </li>
+                
+                <li class="full m10b fs14  l"><h3><a href="#discussion_view/64">Интерстеллар</a></h3>
+                    <div class="ws210 m10tb l p10r  tit"><span class="full fs10 l">Инициатор</span><span class="ws100 m10r l"><a href="#">Ишмуратов А.</a></span><span class="ws100 lh1 l">Голосование<br>недоступно</span></div><div class="ws100 m10tb l tit"><span class="full fs10 l">Статус</span><span>принят</span></div>
+                </li>
+                
+                <li class="full m10b fs14  l"><h3><a href="#discussion_view/116">ооооооооооооооооооооооооооооооо</a></h3>
+                    <div class="ws210 m10tb l p10r  tit"><span class="full fs10 l">Инициатор</span><span class="ws100 m10r l"><a href="#">Ишмуратов А.</a></span><span class="ws100 lh1 l">Голосование<br>недоступно</span></div><div class="ws100 m10tb l tit"><span class="full fs10 l">Статус</span><span>принят</span></div>
+                </li>
+                
+
+            </ol>
+        </div>
+
+    </div>
+</div></div>
+
+                </div>
+                <div id="main_bar_container"><div id="bar" class="ws254  pfx  h100 l ">
+    <div class="m66t l">
+        <div class="ws160 tac m30l">
+            <a href="#profile_view/2">
+                
+
+                <img src="%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D1%85%20%D1%81%D0%BE%D0%B2%D0%B5%D1%82%D0%BE%D0%B2_files/index.png">
+                
+            </a>
+            <h2>
+
+               Admin Adminoff
+
+                <br>
+
+
+            </h2>
+        </div>
+    </div>
+    <div class="ws30 m25t l">
+        <div class="full l">
+            <a class="l m20tb " href="http://plan.local/index.php?c=access&amp;a=logout">
+                <img src="%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D1%85%20%D1%81%D0%BE%D0%B2%D0%B5%D1%82%D0%BE%D0%B2_files/ico_exit.png">
+            </a>
+        </div>
+    </div>
+    <div class="full l m30t p20t">
+        <ul class="lsn m20l p0 lh1_5">
+            <li class="ttu ">
+                <a href="#">Совет</a>
+                <ul class="lsn p0">
+                    <li class="ttn ">
+                        <a href="#actions">Мероприятия</a>
+                    </li>
+                    <li class="ttn ">
+                        <a href="#questions">Повестка дня</a>
+                    </li>
+                    <li class="ttn ">
+                        <a href="#discussions">Обсуждения</a>
+                    </li>
+                    <li class="ttn ">
+                        <a href="#party">Участники</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="fot" class="full l hs150">
+    <div class="page ws1024 ma">
+        <div class="ws904 r">
+            <div class="ws650 m30t l">
+                <div class="ws650 l">
+                    <strong>© Система автоматизации работы общественных советов, 2015</strong>
+                    <p class="m10t">
+
+                        Все материалы сайта доступны по лицензии:
+
+                        <b>Creative Common Attribution 3.0</b>
+                        <img class="m10lr r" src="%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D1%85%20%D1%81%D0%BE%D0%B2%D0%B5%D1%82%D0%BE%D0%B2_files/logo_gpl.png" alt="GPL3">
+                        <img class="m10lr r" src="%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D1%85%20%D1%81%D0%BE%D0%B2%D0%B5%D1%82%D0%BE%D0%B2_files/logo_cc.png" alt="Creative Common Attribution 3.0">
+                    </p>
+                </div>
+                <span class="ws550 l m10t">При реализации проекта 
+используются средства государственной поддержки, выделенные в качестве 
+гранта в соответствии с распоряжением Президента Российской Федерации от
+ 17.01.2014 №11-рп и на основании конкурса, проведенного Фондом ИСЭПИ</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <!--<script>-->
+            <!--(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=-->
+            <!--function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;-->
+            <!--e=o.createElement(i);r=o.getElementsByTagName(i)[0];-->
+            <!--e.src='//www.google-analytics.com/analytics.js';-->
+            <!--r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));-->
+            <!--ga('create','UA-XXXXX-X');ga('send','pageview');-->
+        <!--</script>-->
+
+        <script data-main="scripts/4f35fe6a.main" src="%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D1%8B%20%D0%BE%D0%B1%D1%89%D0%B5%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D1%8B%D1%85%20%D1%81%D0%BE%D0%B2%D0%B5%D1%82%D0%BE%D0%B2_files/require.js"></script>
+
+</body></html>

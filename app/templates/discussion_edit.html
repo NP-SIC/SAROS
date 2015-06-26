@@ -1,0 +1,39 @@
+<div class="ws770 l">
+    <div class="ws650 m35tb r">
+        <div class="full l m5b">
+        </div>
+        <div class="full m20t l ">
+            <h1>Добавление обсуждения</h1>
+        </div>
+
+        <div id="cont" class="ws540 l m10b">
+            <div class="full l m20t">
+                <label class="full tit l m5b">Заголовок обсуждения</label>
+                <input class="ws500  m20b l" id="discussion_caption_value" value="<%= discussion.get('caption') %>" type="text">
+            </div>
+            <div class="full l">
+                <label class="full tit l m5b">Текст обсуждения</label>
+
+                <textarea class="ws500  ffa lh1_5  m20b l" cols="40" rows="10" id="discussion_text_value"><%= discussion.get('text') %></textarea>
+            </div>
+            <div class="full l">
+
+                <% if (id == 0) {   %>
+                <select class="ws200 pre m10r l" id="discussion_section_id">
+
+                    <% sections.each (function(section) { %>
+                    <option
+                    <% if (section.get('object_id') === selected) { %> selected="selected" <% } %>
+                    value="<%= section.get('object_id') %>">
+                    <%= section.get('name') %></option>
+                    <% }); %>
+                </select>
+                <% } %>
+
+            </div>
+
+
+
+            <button class="ws150 l m10r action fwb ttu" id="save_discussion_button_id">Сохранить</button>
+        </div></div>
+</div>

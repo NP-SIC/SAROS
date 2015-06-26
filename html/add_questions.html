@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+        <title>Dropper Demo</title>
+
+        <!-- Modernizer -->
+        <script src="http://formstone.it/js/modernizr.js"></script>
+
+        <!-- Demo Resources -->
+
+        <script src="http://formstone.it/js/demo.js"></script>
+
+        <!--[if IE 8]>
+            <script>var IE8 = true;</script>
+            <script src="http://formstone.it/js/site.ie8.js"></script>
+            <link rel="stylesheet" href="http://formstone.it/css/demo.ie8.css">
+        <![endif]-->
+        <!--[if IE 9]>
+            <script>var IE9 = true;</script>
+            <script src="http://formstone.it/js/site.ie9.js"></script>
+        <![endif]-->
+<link rel="stylesheet" href="css/icss.css" type="text/css">
+<link rel="stylesheet" href="css/base.css" type="text/css">
+        <link href="js/jquery.fs.dropper.css" rel="stylesheet" type="text/css" media="all">
+        <script src="js/jquery.fs.dropper.js"></script>
+        <script type='text/javascript' src='js/select.js'></script>
+        <style>
+            .demo .filelists { margin: 20px 0; }
+            .demo .filelists h5 { margin: 10px 0 0; }
+
+            .demo .filelist { margin: 0; padding: 10px 0; }
+            .demo .filelist li { background: #fff; border-bottom: 1px solid #eee; font-size: 14px; list-style: none; padding: 5px; }
+            .demo .filelist li:before { display: none; }
+            .demo .filelist li .file { color: #333; }
+            .demo .filelist li .progress { color: #666; float: right; font-size: 10px; text-transform: uppercase; }
+            .demo .filelist li .delete { color: red; cursor: pointer; float: right; font-size: 10px; text-transform: uppercase; }
+            .demo .filelist li.complete .progress { color: green; }
+            .demo .filelist li.error .progress { color: red; }
+
+        </style>
+        <script>
+            var $filequeue,
+                $filelist;
+
+            $(document).ready(function() {
+                $filequeue = $(".demo .filelist.queue");
+                $filelist = $(".demo .filelist.complete");
+
+                $(".demo .dropped").dropper({
+                    action: "http://formstone.it/components/Dropper/demo/upload.php",
+                    maxSize: 1048576
+                }).on("start.dropper", onStart)
+                  .on("complete.dropper", onComplete)
+                  .on("fileStart.dropper", onFileStart)
+                  .on("fileProgress.dropper", onFileProgress)
+                  .on("fileComplete.dropper", onFileComplete)
+                  .on("fileError.dropper", onFileError);
+
+                $(window).one("pronto.load", function() {
+                    $(".demo .dropped").dropper("destroy").off(".dropper");
+                });
+            });
+
+            function onStart(e, files) {
+                console.log("Start");
+
+                var html = '';
+
+                for (var i = 0; i < files.length; i++) {
+                    html += '<li data-index="' + files[i].index + '"><span class="file">' + files[i].name + '</span><span class="progress">Queued</span></li>';
+                }
+
+                $filequeue.append(html);
+            }
+
+            function onComplete(e) {
+                console.log("Complete");
+                // All done!
+            }
+
+            function onFileStart(e, file) {
+                console.log("File Start");
+
+                $filequeue.find("li[data-index=" + file.index + "]")
+                          .find(".progress").text("0%");
+            }
+
+            function onFileProgress(e, file, percent) {
+                console.log("File Progress");
+
+                $filequeue.find("li[data-index=" + file.index + "]")
+                          .find(".progress").text(percent + "%");
+            }
+
+            function onFileComplete(e, file, response) {
+                console.log("File Complete");
+
+                if (response.trim() === "" || response.toLowerCase().indexOf("error") > -1) {
+                    $filequeue.find("li[data-index=" + file.index + "]").addClass("error")
+                              .find(".progress").text(response.trim());
+                } else {
+                    var $target = $filequeue.find("li[data-index=" + file.index + "]");
+
+                    $target.find(".file").text(file.name);
+                    $target.find(".progress").remove();
+                    $target.appendTo($filelist);
+                }
+            }
+
+            function onFileError(e, file, error) {
+                console.log("File Error");
+
+                $filequeue.find("li[data-index=" + file.index + "]").addClass("error")
+                          .find(".progress").text("Error: " + error);
+            }
+        </script>
+
+    </head>
+<body class="ffa h100 ">
+<div id="w" class="full   l">
+<div id="hed" class="full l hs150">
+<div class=" page ws1024 ma">
+<div class="ws110 m35tb tar l">
+<a href="#">
+<img src="img/logo.png" width="80px" height="80px">
+</a>
+</div>
+<div class="ws650 m35tb ttu p10l l">
+<h1>
+Система
+<br>
+автоматизации работы общественных советов
+</h1>
+</div>
+</div>
+</div>
+<div id="cont" class="full l clearfix">
+<div class=" page ws1024  ma">
+<div class="ws770 l">
+<div class="ws650 m35tb r">
+ <div class="full l m5b">
+ <a href="#">Главная страница</a> / <a href="#">Совет малых предпринимателей</a> /
+ </div> 
+ <div class="full m20t l ">
+ <h1>Добавление вопроса</h1>
+ </div>
+
+<div id="cont" class="ws540 l m10b">
+<div class="full l m20t">
+<label class="full tit l m5b">Заголовок вопроса</label>
+<input type="text" class="ws500  m20b l" value="Как долго продлиться, лето, которое понравилось">
+</div>
+<div class="full l">
+<label class="full tit l m5b">Текст вопроса</label>
+
+<textarea class="ws500  ffa lh1_5  m20b l" cols="40" rows="10">OpenWorm — попытка построить полную симуляцию червя, состоящего из 302 нервных клеток и 95 мышечных. Проект стартовал в начале 2011 года и в настоящее время продолжает свое существование с помощью сотрудничества ученых и программистов из США, России и Европы. Все усилия рассматриваются как первый шаг на пути к имитации больших биологических систем. Для построения модели взят червь C. elegans.</textarea>
+</div>
+<div class="full l">
+<div class="ws200 m20r l">
+<div class="full l m20b">
+<div class="full l">
+ <span class="ws200 m10b tit l ">Секция</span>
+</div>
+<div class="ws200  l">
+   <select class="ws200 pre  l" name="hero[]">
+    <option selected="selected" >&ndash; Выберите героя &ndash;</option>
+    <option value="Чебурашка">Чебурашка</option>
+    <option value="Крокодил Гена">Крокодил Гена</option>
+    <option value="Шапокляк">Шапокляк</option>
+    <option value="Крыса Лариса">Крыса Лариса</option>
+   </select>
+</div>
+</div>
+
+</div>
+<div class="ws200 m20r l">
+<div class="full l m20b">
+<div class="full l">
+ <span class="ws200 m10b tit l ">Заседание</span>
+</div>
+<div class="ws200  l">
+   <select class="ws200 pre  l" name="hero[]">
+    <option selected="selected" >&ndash; Выберите героя &ndash;</option>
+    <option value="Чебурашка">Чебурашка</option>
+    <option value="Крокодил Гена">Крокодил Гена</option>
+    <option value="Шапокляк">Шапокляк</option>
+    <option value="Крыса Лариса">Крыса Лариса</option>
+   </select>
+</div>
+</div>
+</div>
+</div>
+<div class="ws200 m20r l">
+<div class="full l m20b">
+<div class="full l">
+ <span class="ws200 m10b tit l ">Статус</span>
+</div>
+<div class="ws200  l">
+   <select class="ws200 pre  l" name="hero[]">
+    <option selected="selected" >&ndash; Выберите героя &ndash;</option>
+    <option value="Чебурашка">Чебурашка</option>
+    <option value="Крокодил Гена">Крокодил Гена</option>
+    <option value="Шапокляк">Шапокляк</option>
+    <option value="Крыса Лариса">Крыса Лариса</option>
+   </select>
+</div>
+</div>
+
+</div>
+<div class="full l">
+ <span class="ws200 m10b tit l ">Загрузка файлов</span>
+ </div>
+<div class="demo full m20b l">
+
+<form action="#" class="demo_form">
+                    <div class="dropped"></div>
+
+                    <div class="filelists">
+                       
+                        <ol class="filelist complete">
+                        </ol>
+                       
+                        <ol class="filelist queue">
+                        </ol>
+                    </div>
+                </form>
+
+    
+</div>
+<button class="ws150 l m10r action fwb ttu">Разослать</button>
+</div></div>
+<div id="bar" class="ws254  pfx  h100 l ">
+<div class="m66t l">
+<div class="ws160 tac m30l">
+<img src="img/demo/avatar_sm.png" width="100px" height="100px">
+<h2>
+
+Александр
+
+<br>
+
+Опарин
+
+</h2>
+</div>
+</div>
+<div class="ws30 m25t l">
+<div class="full l">
+<a class="l m20tb " href="#gosearch">
+<img src="img/ico_search.png">
+</a>
+</div>
+<div class="full l">
+<a class="l m20tb " href="#">
+<img src="img/ico_exit.png">
+</a>
+</div>
+</div>
+<div class="full l m30t p20t">
+<ul class="lsn m20l p0 lh1_5">
+<li class="ttu ">
+<a href="#">Первый уровень</a>
+<ul class="lsn p0">
+<li class="ttn ">
+<a href="#">Второй уровень</a>
+</li>
+<li class="ttn ">
+<a href="#">Второй уровень</a>
+</li>
+<li class="ttn ">
+<a href="#">Второй уровень</a>
+</li>
+</ul>
+</li>
+<li class="ttu ">
+<a href="#">Первый уровень</a>
+</li>
+
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="fot" class="full l hs150">
+<div class=" page ws1024 ma">
+<div class="ws904 r  ">
+<div class="ws650 m30t l">
+<div class="ws650 l">
+<strong>© Система автоматизации работы общественных советов, 2015</strong>
+<p class="m10t">
+
+Все материалы сайта доступны по лицензии: 
+
+<b>Creative Common Attribution 3.0</b>
+<img class="m10lr r" src="img/logo_gpl.png" alt="GPL3">
+<img class="m10lr r" src="img/logo_cc.png" alt="Creative Common Attribution 3.0">
+</p>
+</div>
+<span class="ws550 l m10t ">При реализации проекта используются средства государственной поддержки, выделенные в качестве гранта в соответствии с распоряжением Президента Российской Федерации от 17.01.2014 №11-рп и на основании конкурса, проведенного Фондом ИСЭПИ</span>
+</div>
+</div>
+</div>
+</div>
+<div id="gosearch" class="pre ws1024 ma">
+
+ <a href="#" class="cancel l pab m20tb "><img src="img/ico_search_a.png"></a> 
+
+ <input autofocus id="search" type="text" class="ws650  pab r0 m30t ttl l" value="" />
+
+ <div id="rez" class="ws650 pab m30t l">
+ <b>В результате поиска найдено 5 совпадений</b>
+ <div class=" full l m30t">
+ <ol class="p0">
+ <li class="m20b l"><a href="#">Заголовок страницы</a>
+<div class=" full l tit"> дата обнавления страницы 17 ноября 2014 года 15.30</div>
+
+ </li>
+<li  class="m20b l"><a href="#">Заголовок страницы</a>
+<div class=" full l tit"> дата обнавления страницы 17 ноября 2014 года 15.30</div>
+</li>
+<li  class="m20b l"><a href="#">Заголовок страницы</a>
+<div class=" full l tit"> дата обнавления страницы 17 ноября 2014 года 15.30</div>
+</li>
+<li  class="m20b l"><a href="#">Заголовок страницы</a>
+<div class=" full l tit"> дата обнавления страницы 17 ноября 2014 года 15.30</div>
+</li>
+<li  class="m20b l"><a href="#">Заголовок страницы</a>
+<div class=" full l tit"> дата обнавления страницы 17 ноября 2014 года 15.30</div>
+</li>
+ </ol>
+ </div> 
+ </div>
+
+
+</div> 
+<div id="cover"></div>
+</body>
+</html>

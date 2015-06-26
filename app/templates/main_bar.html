@@ -1,0 +1,61 @@
+<div id="bar" class="ws254  pfx  h100 l ">
+    <div class="m66t l">
+        <div class="ws160 tac m30l">
+            <a href="#profile_view/<%= profile.get ('object_id') %>">
+                <% if ( profile.get('picture_file') != null && profile.get('picture_file') != '') { %>
+
+                <img src="/index.php?c=files&a=get_public_file&id=<%= profile.get('picture_file') %>">
+                <% } else { %>
+                <img src="/new-ui/html/img/demo/avatar_sm.png">
+                <% } %>
+            </a>
+            <h2>
+
+               <%= profile.get ('first_name') %> <%= profile.get ('surname') %>
+
+                <br>
+
+
+            </h2>
+        </div>
+    </div>
+    <div class="ws30 m25t l">
+        <div class="full l">
+            <a class="l m20tb " href="#search">
+                <img src="/new-ui/html/img/ico_search.png">
+            </a>
+        </div>
+        <div class="full l">
+            <a class="l m20tb " href="/index.php?c=access&a=logout">
+                <img src="/new-ui/html/img/ico_exit.png">
+            </a>
+        </div>
+    </div>
+    <div class="full l m30t p20t">
+        <ul class="lsn m20l p0 lh1_5">
+            <li class="ttu ">
+                <a href="#">Совет</a>
+                <ul class="lsn p0">
+
+                    <li class="ttn ">
+                        <a href="#actions">Мероприятия</a>
+                    </li>
+                    <!--
+                    <li class="ttn ">
+                        <a href="#search">Поиск</a>
+                    </li> -->
+
+                    <li class="ttn ">
+                        <a href="#questions">Повестка дня</a>
+                    </li>
+                    <li class="ttn ">
+                        <a href="#discussions">Обсуждения</a>
+                    </li>
+                    <li class="ttn ">
+                        <a href="#party">Участники</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

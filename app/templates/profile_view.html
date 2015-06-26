@@ -1,0 +1,51 @@
+<div class="ws770 l">
+        <div class="ws650 m35tb r">
+            <div class="title fwb full m20b l">
+                <span class="  l p5b m10r" href="">Профиль участника</span>
+                <% if (my_profile) { %>
+                <a class="l p5b m10r" href="#profile_edit/<%= profile.get ('object_id') %>">Редактировать</a>
+                <% } %>
+            </div>
+            <div class="ws200 l">
+                <% if ( profile.get('picture_file') != null && profile.get('picture_file') != '') { %>
+
+                <img src="/index.php?c=files&a=get_public_file&id=<%= profile.get('picture_file') %>">
+                <% } else { %>
+                <img src="/new-ui/html/img/demo/avatar_sm.png">
+                <% } %>
+            </div>
+            <div class="ws430 r">
+                <h1>
+
+                    <br>
+                    <%= profile.get ('first_name') %>  <%= profile.get ('surname') %>
+                    <br>
+
+                </h1>
+                <ul class="lsn p0 m20tb lh1_5 l">
+                    <li> <%= profile.get ('job_title') %></li>
+                </ul>
+                <span class="region full l"></span>
+            </div>
+            <div class="full m20t l">
+                <div class="full l m10b">
+                    <strong>Общая информация</strong>
+                </div>
+                <div class="ws450 m20b l">
+                    <p><%= profile.get ('comments') %></p>
+                </div>
+                <div class="full l m10b">
+                    <strong>Контактные данные</strong>
+                </div>
+                <div class="full l">
+                    <p class="ttl lh1_5">
+
+                        Телефон: <%= phone %>
+                        <br>
+                        Почта: <a> <%= email %> </a>
+                        <br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>

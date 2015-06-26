@@ -1,0 +1,126 @@
+<div class="ws770 l">
+    <div class="ws650 m35tb r">
+        <div class="full l m5b">
+        </div>
+        <div class="full m20b l ">
+            <h1>Совет</h1>
+        </div>
+
+
+        <% nearest_event.each (function(event0) { %>
+        <div class="alert a ws570 l m10b p15 fwb" role="alert">
+            <a href="#action_view/<%= event0.get ('object_id') %>">
+            <span class="p15l">Ближайшее заседание состоится <%= event0.get ('start') %></span>
+            </a>
+        </div>
+        <% }); %>
+
+        <div id="cont" class="ws540 l m10b">
+
+            <div class="full l m20tb">
+                <strong class=" full m10b l ">Выберите секцию</strong>
+                <div class="ws200 m10r l">
+
+
+                    <select class="ws200 pre m10r l" id="timeline_sectionchangeselect_id">
+
+                        <option <% if (selected == 0) { %> selected="selected" <% } %> value="0">&ndash; Все секции &ndash;</option>
+
+                        <% sections.each (function(section) { %>
+                        <option
+                        <% if (section.get('object_id') === selected) { %> selected="selected" <% } %>
+                        value="<%= section.get('object_id') %>">
+                        <%= section.get('name') %></option>
+                        <% }); %>
+                    </select>
+                </div>
+            </div>
+
+            <div class="full l ">
+                <strong class=" full m10b l ">Повестка дня</strong>
+                <ol class="p0 ws540">
+
+                    <% questions.each (function(question) { %>
+                    <li class="full m10b fs14 l"><h3><a href="#question_view/<%= question.get('object_id') %>"><%= question.get('name') %></a></h3>
+
+                        <div class="ws210 m10tb l p10r  tit">
+                            <span class="full fs10 l">Инициатор</span>
+                        <span class="ws100 m10r l">
+                            <a href="#profile/<%= question.get('createdById') %>"><%= question.get('createdBy') %></a></span>
+                            <span class="ws100 lh1 l"></span>
+                        </div>
+
+
+                        <div class="ws100 m10tb l tit">
+                            <span class="full fs10 l">Статус</span>
+                            <span class="gren"><%= question.get('status') %></span>
+                        </div>
+
+                    </li>
+                    <% }); %>
+
+                </ol>
+            </div>
+
+            <div class="full l ">
+                <strong class=" full m10b l ">Обсуждения</strong>
+                <ol class="p0 ws540">
+
+                    <% discussions.each (function(discussion) { %>
+                    <li class="full m10b fs14 l"><h3><a href="#discussion_view/<%= discussion.get('object_id') %>"><%= discussion.get('name') %></a></h3>
+                        <div class="ws210 m10tb l p10r fs10 tit"></div>
+                        <div class="ws210 m10tb l p10r  tit"><span class="full fs10 l"></span><span class="ws100 m10r l"></span><span class="ws100 lh1 l"></span></div>
+                    </li>
+                    <% }); %>
+
+                </ol>
+            </div>
+            <div class="full l m20b">
+                <strong class=" full m10b l ">Последние действия</strong>
+                <ul class="p0 lsn ws540">
+
+                    <% timelines.each (function(timeline) { %>
+                    <li class="full m10b fs14 l">
+                        <a href="#profile_view/<%= timeline.get ('updatedById') %>"><%= timeline.get ('updatedBy') %></a>
+
+                        <% if (timeline.get ('dateCreated') == timeline.get ('dateUpdated')) { %> создал <% } else { %> правил <% } %>
+
+                        <% if (timeline.get ('type') == "company") { %> совет  <% } %>
+                        <% if (timeline.get ('type') == "milestone") { %> подпроект  <% } %>
+                        <% if (timeline.get ('type') == "workspace") { %> секцию совета <% } %>
+                        <% if (timeline.get ('type') == "task") { %> задачу  <% } %>
+                        <% if (timeline.get ('type') == "message") { %> документ   <% } %>
+                        <% if (timeline.get ('type') == "file") { %> файл  <% } %>
+                        <% if (timeline.get ('type') == "contact") { %> контакт <% } %>
+
+                        <% if (timeline.get ('type') == "company" && 0) { %>
+                        <a href="#<%= timeline.get ('object_id') %>"> <%= timeline.get ('name') %> </a>
+                        <% } %>
+                        <% if (timeline.get ('type') == "milestone" && 0) { %>
+                        <a href="#<%= timeline.get ('object_id') %>"> <%= timeline.get ('name') %> </a>
+                        <% } %>
+                        <% if (timeline.get ('type') == "workspace" && 0) { %>
+                        <a href="#<%= timeline.get ('object_id') %>"> <%= timeline.get ('name') %> </a>
+                        <% } %>
+                        <% if (timeline.get ('type') == "task") { %>
+                        <a href="#question_view/<%= timeline.get ('object_id') %>"> <%= timeline.get ('name') %> </a>
+                        <% } %>
+                        <% if (timeline.get ('type') == "message") { %>
+                        <a href="#discussion_view/<%= timeline.get ('object_id')%>"> <%= timeline.get ('name') %> </a>
+                        <% } %>
+                        <% if (timeline.get ('type') == "file") { %>
+                        <a href="#<%= timeline.get ('object_id') %>"> <%= timeline.get ('name') %> </a>
+                        <% } %>
+                        <% if (timeline.get ('type') == "contact") { %>
+                        <a href="#profile_view/<%= timeline.get ('object_id')%>"> <%= timeline.get ('name') %> </a>
+                        <% } %>
+
+                        <%= timeline.get ('dateUpdated') %>
+                    </li>
+                    <% }); %>
+
+                </ul>
+            </div>
+
+        </div></div>
+</div>

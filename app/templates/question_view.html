@@ -1,0 +1,106 @@
+<div class="ws770 l">
+<div class="ws650 m35tb r">
+    <div class="full l m5b">
+    </div>
+    <div class="full m20b l ">
+        <div class="l"><h1><%= caption %></h1>
+        </div>
+        <div class="m20l l">
+            <!--<button class="hed add fwb p5 l">+</button>-->
+            <!--<button class="hed close fwb p5 l"><img src="img/pen_p.png"></button>-->
+            <!--<button class="hed close fwb p5 l">×</button>-->
+
+        </div></div>
+
+    <% nearest_question.each (function(question0) { %>
+    <div class="alert a ws570 l m10b p15 fwb" role="alert">
+        <a href="#question_view/<%= question0.get ('object_id') %>">
+            <span class="p15l">Ближайшее заседание состоится <%= question0.get ('start_date') %></span>
+        </a>
+    </div>
+    <% }); %>
+
+
+    <div id="cont" class="ws540 l m10b">
+        <!--<a class="r" href="#goall">Посмотреть секции совета</a>-->
+
+
+        <div class="full m10b l">
+            <p><%= text %></p>
+        </div>
+
+        <% if (status == null) { %>
+        <div class="full l m20tb">
+                <button class="ws150 l m10r action fwb ttu" id="accept_question">Принять</button>
+                <button class="ws150 l m10r action fwb ttu" id="reject_question">Отклонить</button>
+        </div>
+        <% } %>
+
+        <div class="full m10t fs14 l">
+            Файл:  <a href="/index.php?c=plan&a=download_file&object_id=<%= id %>"> <%= filename %> </a>
+        </div>
+
+        <% if (status == 5) { %>
+        <div class="full l m20tb">
+            <h2>Вопрос принят</h2>
+        </div>
+        <% } %>
+
+        <% if (status == 6) { %>
+        <div class="full l m20tb">
+            <h2>Вопрос отклонен</h2>
+        </div>
+        <% } %>
+
+        <div class="full l m20tb">
+
+            <b><a class="l m20l" href="#question_edit/<%= id %>">Редактировать</a></b>
+
+            <b><a class="l m20l" href="#question_decision/<%= id %>">Заслушать</a></b>
+
+            <b><a class="l m20l" href id="action_remove_question">Удалить</a></b>
+
+            <b class="tit m20r l">Реплики в обсуждении вопроса</b>
+        </div>
+
+        <div class="full m20b">
+
+            <% comments.each (function(comment) { %>
+                        <div class="full m10b l ">
+
+                            <div class="ws70 l ">
+                                <% if ( comment.get('picture_file') != null && comment.get('picture_file') != '') { %>
+
+                                <img width="70px" height="70px" src="/index.php?c=files&a=get_public_file&id=<%= comment.get('picture_file') %>">
+                                <% } else { %>
+                                <img width="70px" height="70px" src="/new-ui/html/img/demo/avatar_sm.png">
+                                <% } %>
+                            </div>
+
+                            <div class="ws450 m10l l">
+                                <div class="full tit fs10 l"><span class="ws100 m5r l">
+                                    <a href="#profile_view/<%= comment.get('updatedById') %>"><%= comment.get('updatedBy')%> </a>
+                                </span><%= comment.get ('deteUpdated') %></div>
+                                <span class="full l"><p><%= comment.get ('text') %></p></span>
+                                <!--<span class="full fs14 l"><a class="l" href="#">Ответить</a><div class="m20l l">-->
+                                    <!--<button class="hed add fwb p5 l">+</button>-->
+                                    <!--<button class="hed close fwb p5 l"><img src="img/pen_p.png"></button>-->
+                                    <!--<button class="hed close fwb p5 l">×</button>-->
+                                <!--</div></span>-->
+                            </div>
+                        </div>
+          <% }); %>
+
+        </div>
+        <div class=" full m20t  l "><strong class="l">Добавление реплики</strong>
+        </div>
+
+        <div class="full l">
+            <label class="full tit l m5b">Текст реплики</label>
+
+            <textarea class="ws500  ffa lh1_5  m20b l" cols="40" rows="10" id="question_add_comment_text"></textarea>
+        </div>
+
+        <button class="ws150 l m10r action fwb ttu" id="question_add_comment_button_id">Добавить</button>
+    </div></div>
+</div>
